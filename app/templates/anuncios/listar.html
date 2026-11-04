@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}Administrar Anuncios{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2 class="text-primary fw-bold">Administración de Anuncios</h2>
+        <p class="text-muted">Gestiona las publicaciones del sistema.</p>
+    </div>
+
+    <a href="{{ url_for('anuncios.crear') }}" class="btn btn-primary">
+        + Nuevo Anuncio
+    </a>
+
+</div>
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-primary">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Categoría</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for anuncio in anuncios %}
+
+                    <tr>
+
+                        <td>{{ anuncio.id }}</td>
+
+                        <td>{{ anuncio.titulo }}</td>
+
+                        <td>{{ anuncio.categoria.nombre }}</td>
+
+                        <td>{{ anuncio.usuario.nombre }}</td>
+
+                        <td>{{ anuncio.fecha_publicacion.strftime('%d/%m/%Y') }}</td>
+
+                        <td>
+
+                            {% if anuncio.estado == 'publicado' %}
+
+                                <span class="badge bg-success">Publicado</span>
+
+                            {% else %}
+
+                                <span class="badge bg-secondary">Inactivo</span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <a href="{{ url_for('anuncios.editar', id=anuncio.id) }}"
+                               class="btn btn-warning btn-sm">
+                                Editar
+                            </a>
+
+                            <form action="{{ url_for('anuncios.eliminar', id=anuncio.id) }}"
+                                  method="POST"
+                                  class="d-inline">
+
+                                <button type="submit"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('¿Eliminar este anuncio?')">
+                                    Eliminar
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% else %}
+
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            No existen anuncios registrados.
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<a href="{{ url_for('main.index') }}" class="btn btn-secondary mt-3">
+    Volver al inicio
+</a>
+
+{% endblock %}

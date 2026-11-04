@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel Principal{% endblock %}
+
+{% block content %}
+
+<div class="mb-4">
+
+    <h2 class="fw-bold text-primary">
+        Panel de Administración
+    </h2>
+
+    <p class="text-muted">
+        Bienvenido, {{ current_user.nombre }}.
+        Administra el tablón de anuncios desde este panel.
+    </p>
+
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h5 class="text-primary fw-bold">Usuarios</h5>
+
+                <p class="text-muted">
+                    Gestiona los usuarios registrados en el sistema.
+                </p>
+
+                <a href="{{ url_for('usuarios.listar') }}"
+                   class="btn btn-primary">
+                    Administrar usuarios
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h5 class="text-success fw-bold">Categorías</h5>
+
+                <p class="text-muted">
+                    Organiza los anuncios mediante categorías.
+                </p>
+
+                <a href="{{ url_for('categorias.listar') }}"
+                   class="btn btn-success">
+                    Administrar categorías
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h5 class="text-warning fw-bold">Anuncios</h5>
+
+                <p class="text-muted">
+                    Registra, modifica y elimina publicaciones.
+                </p>
+
+                <a href="{{ url_for('anuncios.listar') }}"
+                   class="btn btn-warning">
+                    Administrar anuncios
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

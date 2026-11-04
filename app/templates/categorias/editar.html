@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Categoría{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-7">
+
+        <div class="card shadow-sm">
+
+            <div class="card-body p-4">
+
+                <h3 class="text-primary mb-4">Modificar Categoría</h3>
+
+                <form method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">Nombre</label>
+
+                        <input type="text"
+                               name="nombre"
+                               class="form-control"
+                               value="{{ categoria.nombre }}"
+                               required>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label">Descripción</label>
+
+                        <textarea name="descripcion"
+                                  class="form-control"
+                                  rows="4">{{ categoria.descripcion or '' }}</textarea>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Actualizar Categoría
+                    </button>
+
+                    <a href="{{ url_for('categorias.listar') }}"
+                       class="btn btn-secondary">
+                        Cancelar
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

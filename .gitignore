@@ -1,0 +1,19 @@
+# Entorno virtual
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Configuración local y secretos
+.env
+instance/
+
+# Base de datos local
+*.db
+
+# Archivos temporales
+*.log
+.DS_Store
+.vscode/
